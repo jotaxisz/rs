@@ -21,7 +21,9 @@ body{
 }
 
 #startScreen{
-  position:absolute;
+  position:fixed;
+  top:0;
+  left:0;
   width:100%;
   height:100%;
   display:flex;
@@ -30,6 +32,7 @@ body{
   background:black;
   cursor:pointer;
   font-size:24px;
+  z-index:9999; /* garante que fique na frente */
 }
 
 #conteudo{
@@ -59,7 +62,6 @@ button{
   <button id="botao" style="display:none;">Continuar</button>
 </div>
 
-<!-- ÁUDIOS -->
 <audio id="audio1" preload="auto" loop>
   <source src="intro.mp3" type="audio/mpeg">
 </audio>
@@ -69,15 +71,17 @@ button{
 </audio>
 
 <script>
-const startScreen = document.getElementById("startScreen");
-const conteudo = document.getElementById("conteudo");
-const textoEl = document.getElementById("texto");
-const botao = document.getElementById("botao");
+document.addEventListener("DOMContentLoaded", function(){
 
-const audio1 = document.getElementById("audio1");
-const audio2 = document.getElementById("audio2");
+  const startScreen = document.getElementById("startScreen");
+  const conteudo = document.getElementById("conteudo");
+  const textoEl = document.getElementById("texto");
+  const botao = document.getElementById("botao");
 
-const texto1 = "eu esperaria você o tempo que fosse preciso. esperaria em silêncio, esperaria doendo, esperaria acreditando. porque quando o amor é verdadeiro, o tempo deixa de ser um peso e passa a ser prova. e eu provaria todos os dias que o que eu sinto por você não é passageiro.
+  const audio1 = document.getElementById("audio1");
+  const audio2 = document.getElementById("audio2");
+
+  const texto1 = "eu esperaria você o tempo que fosse preciso. esperaria em silêncio, esperaria doendo, esperaria acreditando. porque quando o amor é verdadeiro, o tempo deixa de ser um peso e passa a ser prova. e eu provaria todos os dias que o que eu sinto por você não é passageiro.
 
 eu te amo hoje e sempre, e quando eu digo sempre não é uma palavra bonita jogada ao vento, é uma decisão que eu faço dentro do meu coração todos os dias. porque amar você não é impulso, não é carência, não é ilusão. é escolha. é certeza. é paz no meio do caos.
 
@@ -111,7 +115,8 @@ eu te amo com calma e com intensidade.
 te amo com planos e com oração.
 te amo com medo de perder, mas com coragem de lutar.
 e se depender de mim, você nunca vai duvidar do quanto é amada.";
-const texto2 = "e agora eu escrevo de um lugar diferente
+  
+  const texto2 = "e agora eu escrevo de um lugar diferente
 não é mais o lugar da espera cheia de esperança, é o lugar do silêncio que ficou depois que você se foi
 e dói admitir, mas a sua ausência não foi obra do acaso, nem do tempo, nem do destino, foi erro meu
 talvez a gente nem se fale mais
@@ -159,51 +164,51 @@ não como ferida, mas como verdade
 porque algumas pessoas não ficam para sempre
 mas ensinam pra sempre
 e mesmo sem você aqui agora, eu continuo escolhendo ser alguém melhor
-porque foi você que me ensinou o que é amar de verdade. ❤️";
+porque foi você que me ensinou o que é amar de verdade.";
 
-function escreverTexto(texto, callback){
-  textoEl.innerHTML = "";
-  let i = 0;
+  function escreverTexto(texto, callback){
+    textoEl.innerHTML = "";
+    let i = 0;
 
-  function digitar(){
-    if(i < texto.length){
-      textoEl.innerHTML += texto.charAt(i);
-      i++;
-      setTimeout(digitar, 40);
-    } else if(callback){
-      callback();
+    function digitar(){
+      if(i < texto.length){
+        textoEl.innerHTML += texto.charAt(i);
+        i++;
+        setTimeout(digitar, 40);
+      } else if(callback){
+        callback();
+      }
     }
+
+    digitar();
   }
 
-  digitar();
-}
+  startScreen.addEventListener("click", function(){
 
-startScreen.addEventListener("click", function(){
+    audio1.volume = 0.4;
+    audio1.play().catch(err => console.log("Erro audio1:", err));
 
-  // toca primeira música
-  audio1.volume = 0.4;
-  audio1.play().catch(err => console.log("Erro audio1:", err));
+    startScreen.style.display = "none";
+    conteudo.style.display = "block";
 
-  startScreen.style.display = "none";
-  conteudo.style.display = "block";
-
-  escreverTexto(texto1, function(){
-    botao.style.display = "inline-block";
+    escreverTexto(texto1, function(){
+      botao.style.display = "inline-block";
+    });
   });
-});
 
-botao.addEventListener("click", function(){
+  botao.addEventListener("click", function(){
 
-  // troca música
-  audio1.pause();
-  audio1.currentTime = 0;
+    audio1.pause();
+    audio1.currentTime = 0;
 
-  audio2.volume = 1;
-  audio2.currentTime = 0;
-  audio2.play().catch(err => console.log("Erro audio2:", err));
+    audio2.volume = 1;
+    audio2.currentTime = 0;
+    audio2.play().catch(err => console.log("Erro audio2:", err));
 
-  botao.style.display = "none";
-  escreverTexto(texto2);
+    botao.style.display = "none";
+    escreverTexto(texto2);
+  });
+
 });
 </script>
 
