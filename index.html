@@ -11,13 +11,26 @@ body {
   padding: 0;
   background: black;
   color: white;
-  font-family: 'Georgia', serif;
+  font-family: Georgia, serif;
   overflow: hidden;
 }
 
-#container {
-  height: 100vh;
+#startScreen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+#container {
+  display: none;
+  height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -31,7 +44,6 @@ body {
   font-size: 18px;
   line-height: 1.8;
   text-align: center;
-  scroll-behavior: smooth;
 }
 
 button {
@@ -44,25 +56,23 @@ button {
   cursor: pointer;
   border-radius: 5px;
   display: none;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #ddd;
 }
 </style>
 </head>
 <body>
 
+<div id="startScreen">toque para iniciar</div>
+
 <div id="container">
   <div id="texto"></div>
-  <button id="btn">clique aqui</button>
+  <button id="btn">clique aqui para continuar</button>
 </div>
 
-<audio id="audioIntro" src="intro.mp3" autoplay></audio>
-<audio id="audioPrincipal" src="musica.mp3"></audio>
+<audio id="audio1" src="intro.mp3"></audio>
+<audio id="audio2" src="musica.mp3"></audio>
 
 <script>
+
 const parte1 = `eu esperaria você o tempo que fosse preciso. esperaria em silêncio, esperaria doendo, esperaria acreditando. porque quando o amor é verdadeiro, o tempo deixa de ser um peso e passa a ser prova. e eu provaria todos os dias que o que eu sinto por você não é passageiro.
 
 eu te amo hoje e sempre, e quando eu digo sempre não é uma palavra bonita jogada ao vento, é uma decisão que eu faço dentro do meu coração todos os dias. porque amar você não é impulso, não é carência, não é ilusão. é escolha. é certeza. é paz no meio do caos.
@@ -150,8 +160,10 @@ porque foi você que me ensinou o que é amar de verdade`;
 
 const texto = document.getElementById("texto");
 const btn = document.getElementById("btn");
-const audioIntro = document.getElementById("audioIntro");
-const audioPrincipal = document.getElementById("audioPrincipal");
+const audio1 = document.getElementById("audio1");
+const audio2 = document.getElementById("audio2");
+const startScreen = document.getElementById("startScreen");
+const container = document.getElementById("container");
 
 let velocidade = 25;
 
@@ -177,18 +189,28 @@ function escrever(conteudo, callback) {
   digitar();
 }
 
-window.onload = () => {
+startScreen.addEventListener("click", () => {
+  startScreen.style.display = "none";
+  container.style.display = "flex";
+
+  audio1.play();
+
   escrever(parte1, () => {
     btn.style.display = "block";
   });
-};
+});
 
 btn.addEventListener("click", () => {
   btn.style.display = "none";
-  audioIntro.pause();
-  audioPrincipal.play();
+
+  audio1.pause();
+  audio1.currentTime = 0;
+
+  audio2.play();
+
   escrever(parte2);
 });
+
 </script>
 
 </body>
