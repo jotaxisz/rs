@@ -8,31 +8,49 @@
 body {
   margin:0;
   padding:0;
-  font-family: Arial, sans-serif;
-  background:black;
-  color:white;
+  font-family: 'Georgia', serif;
+  background: #0b0b0b;
+  color: #f5f5f5;
   text-align:center;
+  overflow: hidden;
 }
+
 #startScreen, #nextBtn {
-  padding: 15px 25px;
-  background:white;
-  color:black;
+  padding: 20px 35px;
+  background:#f5f5f5;
+  color:#0b0b0b;
   border:none;
-  border-radius:10px;
+  border-radius:12px;
   cursor:pointer;
-  font-size:18px;
+  font-size:22px;
+  font-weight:bold;
   margin-top:20px;
+  transition: all 0.3s ease;
 }
+#startScreen:hover, #nextBtn:hover {
+  background:#e0e0e0;
+}
+
 #conteudo {
   display:none;
-  max-width:700px;
+  max-width:800px;
   margin:auto;
-  margin-top:50px;
-  line-height:1.7;
-  text-align:left;
-  padding:0 20px;
+  margin-top:40px;
+  line-height:2;
+  text-align:center;
+  padding:0 30px;
+  height: 80vh;
   overflow-y: auto;
-  max-height: 80vh;
+  scroll-behavior: smooth;
+}
+
+#texto {
+  font-size:22px;
+  letter-spacing: 0.6px;
+}
+
+p {
+  margin-bottom: 25px;
 }
 </style>
 </head>
@@ -57,83 +75,71 @@ const nextBtn = document.getElementById('nextBtn');
 const audio1 = document.getElementById('audio1');
 const audio2 = document.getElementById('audio2');
 
-// --- Textos completos ---
-const texto1 = `eu esperaria você o tempo que fosse preciso. esperaria em silêncio, esperaria doendo, esperaria acreditando. porque quando o amor é verdadeiro, o tempo deixa de ser um peso e passa a ser prova. e eu provaria todos os dias que o que eu sinto por você não é passageiro.
-
-eu te amo hoje e sempre, e quando eu digo sempre não é uma palavra bonita jogada ao vento, é uma decisão que eu faço dentro do meu coração todos os dias. porque amar você não é impulso, não é carência, não é ilusão. é escolha. é certeza. é paz no meio do caos.
-
-às vezes eu paro e penso em como alguém pode ser tão especial assim. você não entrou na minha vida fazendo barulho, mas mudou tudo em silêncio. mudou a forma como eu penso, como eu sonho, como eu enxergo o futuro. antes de você, o amanhã era só mais um dia. depois de você, o amanhã tem nome, tem planos, tem esperança.
-
-eu amo o seu jeito de ser. amo a sua essência, amo a forma como você pensa, como você fala, como você existe. você é linda, mas não é só uma beleza que os olhos veem, é uma beleza que a alma sente. você é inteligente, determinada, tem uma luz própria que me desmonta por inteiro. eu amo isso em você, amo cada detalhe que faz você ser exatamente quem é.
-
-às vezes eu penso nos seus olhos, nos olhos que me fizeram parar o mundo por alguns segundos. aqueles olhos que me atravessaram sem pedir licença e ficaram aqui dentro. e só de imaginar que um dia eles possam olhar para outro caminho, meu peito aperta de um jeito que eu nem sei explicar. dói só de pensar que alguém possa ter a sorte de ver nascer um filho com os mesmos olhos que me fizeram me apaixonar. dói porque eu queria ser o homem que dividiria esse futuro com você, o homem que veria em uma criança o reflexo do olhar que mudou a minha vida.
-
-mas mesmo que o destino seja incerto, mesmo que a vida seja imprevisível, eu escolheria você mil vezes. porque amar você não é só querer estar ao seu lado, é querer que você seja feliz, mesmo que isso custe pedaços de mim.
-
-dizem que amar é aceitar a vulnerabilidade. e eu sou vulnerável quando se trata de você. porque você tem o poder de me fazer o homem mais forte e, ao mesmo tempo, o mais frágil. você é o meu ponto fraco e a minha maior motivação.
-
-se amar é coragem, então eu sou coragem por você. se amar é sofrer, então eu suporto a dor. porque pior do que sofrer por amor é nunca ter sentido um amor como o que eu sinto por você.
-
-eu te amo de uma forma intensa, profunda, quase desesperada. te amo com medo de te perder e com vontade de te proteger do mundo inteiro. e se eu tiver que esperar, eu espero. e se eu tiver que lutar, eu luto. porque algumas pessoas passam pela nossa vida, mas você marcou a minha alma.
-
-eu quero ser o homem que segura sua mão quando o mundo pesar. quero ser aquele que te lembra do quanto você é incrível quando você duvidar de si mesma. quero ser seu porto seguro, mas também quero que você seja o meu. porque amar, pra mim, é isso, é ser abrigo e também encontrar abrigo.
-
-eu penso na nossa vida daqui a muitos anos. penso nas conversas na sala, nas risadas espalhadas pela casa, na gente envelhecendo junto e ainda se olhando com o mesmo brilho no olhar. penso em construir algo que não seja só bonito por fora, mas forte por dentro. algo que o tempo não desgaste, só amadureça.
-
-e se algum dia você tiver medo, insegurança ou dúvidas, eu quero estar lá. não para te pressionar, não para te cobrar, mas para te lembrar que o meu sentimento é firme. eu não quero um amor raso, não quero algo pela metade. eu quero intensidade, verdade, profundidade. e é isso que eu tenho para oferecer.
-
-você me ensinou que amar também é ter coragem de ficar. e eu fico. eu fico porque você vale a pena. eu fico porque o que eu sinto é maior do que qualquer medo. eu fico porque quando eu penso em desistir, a ideia de viver sem você dói muito mais.
-
-se o amor é uma construção, então eu quero construir com você, tijolo por tijolo, dia após dia. com paciência, com respeito, com cuidado. quero aprender a te amar do jeito que você precisa ser amada. quero ser melhor por você e com você.
-
-eu agradeço a deus por ter colocado você no meu caminho, porque você não é só a mulher que eu amo. você é a mulher que me fez entender o que é amar de verdade. e enquanto existir força em mim, enquanto existir fé, enquanto existir sentimento, eu vou continuar escolhendo você.
-
-eu te amo com calma e com intensidade.
+// --- Textos em formato de parágrafos poéticos ---
+const texto1 = [
+`eu esperaria você o tempo que fosse preciso. esperaria em silêncio, esperaria doendo, esperaria acreditando. porque quando o amor é verdadeiro, o tempo deixa de ser um peso e passa a ser prova. e eu provaria todos os dias que o que eu sinto por você não é passageiro.`,
+`eu te amo hoje e sempre, e quando eu digo sempre não é uma palavra bonita jogada ao vento, é uma decisão que eu faço dentro do meu coração todos os dias. porque amar você não é impulso, não é carência, não é ilusão. é escolha. é certeza. é paz no meio do caos.`,
+`às vezes eu paro e penso em como alguém pode ser tão especial assim. você não entrou na minha vida fazendo barulho, mas mudou tudo em silêncio. mudou a forma como eu penso, como eu sonho, como eu enxergo o futuro. antes de você, o amanhã era só mais um dia. depois de você, o amanhã tem nome, tem planos, tem esperança.`,
+`eu amo o seu jeito de ser. amo a sua essência, amo a forma como você pensa, como você fala, como você existe. você é linda, mas não é só uma beleza que os olhos veem, é uma beleza que a alma sente. você é inteligente, determinada, tem uma luz própria que me desmonta por inteiro. eu amo isso em você, amo cada detalhe que faz você ser exatamente quem é.`,
+`às vezes eu penso nos seus olhos, nos olhos que me fizeram parar o mundo por alguns segundos. aqueles olhos que me atravessaram sem pedir licença e ficaram aqui dentro. e só de imaginar que um dia eles possam olhar para outro caminho, meu peito aperta de um jeito que eu nem sei explicar. dói só de pensar que alguém possa ter a sorte de ver nascer um filho com os mesmos olhos que me fizeram me apaixonar. dói porque eu queria ser o homem que dividiria esse futuro com você, o homem que veria em uma criança o reflexo do olhar que mudou a minha vida.`,
+`mas mesmo que o destino seja incerto, mesmo que a vida seja imprevisível, eu escolheria você mil vezes. porque amar você não é só querer estar ao seu lado, é querer que você seja feliz, mesmo que isso custe pedaços de mim.`,
+`dizem que amar é aceitar a vulnerabilidade. e eu sou vulnerável quando se trata de você. porque você tem o poder de me fazer o homem mais forte e, ao mesmo tempo, o mais frágil. você é o meu ponto fraco e a minha maior motivação.`,
+`se amar é coragem, então eu sou coragem por você. se amar é sofrer, então eu suporto a dor. porque pior do que sofrer por amor é nunca ter sentido um amor como o que eu sinto por você.`,
+`eu te amo de uma forma intensa, profunda, quase desesperada. te amo com medo de te perder e com vontade de te proteger do mundo inteiro. e se eu tiver que esperar, eu espero. e se eu tiver que lutar, eu luto. porque algumas pessoas passam pela nossa vida, mas você marcou a minha alma.`,
+`eu quero ser o homem que segura sua mão quando o mundo pesar. quero ser aquele que te lembra do quanto você é incrível quando você duvidar de si mesma. quero ser seu porto seguro, mas também quero que você seja o meu. porque amar, pra mim, é isso, é ser abrigo e também encontrar abrigo.`,
+`eu penso na nossa vida daqui a muitos anos. penso nas conversas na sala, nas risadas espalhadas pela casa, na gente envelhecendo junto e ainda se olhando com o mesmo brilho no olhar. penso em construir algo que não seja só bonito por fora, mas forte por dentro. algo que o tempo não desgaste, só amadureça.`,
+`e se algum dia você tiver medo, insegurança ou dúvidas, eu quero estar lá. não para te pressionar, não para te cobrar, mas para te lembrar que o meu sentimento é firme. eu não quero um amor raso, não quero algo pela metade. eu quero intensidade, verdade, profundidade. e é isso que eu tenho para oferecer.`,
+`você me ensinou que amar também é ter coragem de ficar. e eu fico. eu fico porque você vale a pena. eu fico porque o que eu sinto é maior do que qualquer medo. eu fico porque quando eu penso em desistir, a ideia de viver sem você dói muito mais.`,
+`se o amor é uma construção, então eu quero construir com você, tijolo por tijolo, dia após dia. com paciência, com respeito, com cuidado. quero aprender a te amar do jeito que você precisa ser amada. quero ser melhor por você e com você.`,
+`eu agradeço a deus por ter colocado você no meu caminho, porque você não é só a mulher que eu amo. você é a mulher que me fez entender o que é amar de verdade. e enquanto existir força em mim, enquanto existir fé, enquanto existir sentimento, eu vou continuar escolhendo você.`,
+`eu te amo com calma e com intensidade.
 te amo com planos e com oração.
 te amo com medo de perder, mas com coragem de lutar.
-e se depender de mim, você nunca vai duvidar do quanto é amada`;
+e se depender de mim, você nunca vai duvidar do quanto é amada`
+];
 
-const texto2 = `e agora eu escrevo de um lugar diferente
+const texto2 = [
+`e agora eu escrevo de um lugar diferente
 não é mais o lugar da espera cheia de esperança, é o lugar do silêncio que ficou depois que você se foi
-e dói admitir, mas a sua ausência não foi obra do acaso, nem do tempo, nem do destino, foi erro meu
-talvez a gente nem se fale mais
-eu prometi me casar contigo, e essa promessa ainda vive em mim como algo que não morreu, só ficou suspenso no tempo
-eu te vejo em todos os lugares, em músicas, em ruas, em detalhes pequenos, mas sei que ainda não consigo te encontrar de verdade
-talvez eu não te encontre nem em outros corpos
-antes eu tinha planos contigo, agora eu tento reaprender por onde recomeçar, mesmo sem querer desistir da ideia de nós
+e dói admitir, mas a sua ausência não foi obra do acaso, nem do tempo, nem do destino, foi erro meu`,
+`talvez a gente nem se fale mais
+eu prometi me casar contigo, e essa promessa ainda vive em mim como algo que não morreu, só ficou suspenso no tempo`,
+`eu te vejo em todos os lugares, em músicas, em ruas, em detalhes pequenos, mas sei que ainda não consigo te encontrar de verdade
+talvez eu não te encontre nem em outros corpos`,
+`antes eu tinha planos contigo, agora eu tento reaprender por onde recomeçar, mesmo sem querer desistir da ideia de nós
 eu falhei com aquilo que eu mais prometi proteger
-falhei em cuidar, falhei em ouvir, falhei em perceber que o amor também precisa de presença, de maturidade, de atitudes que acompanhem as palavras
-eu achei que amar forte era suficiente, e hoje eu entendo que amar também é saber agir certo
+falhei em cuidar, falhei em ouvir, falhei em perceber que o amor também precisa de presença, de maturidade, de atitudes que acompanhem as palavras`,
+`eu achei que amar forte era suficiente, e hoje eu entendo que amar também é saber agir certo
 perder você me ensinou da forma mais dura que o amor não acaba quando ainda existe sentimento
 ele acaba quando a gente machuca demais quem ama
-e eu machuquei
-não passa um dia sem que eu pense em tudo que eu faria diferente
+e eu machuquei`,
+`não passa um dia sem que eu pense em tudo que eu faria diferente
 nas conversas que eu deveria ter tido
 nos silêncios que eu deveria ter respeitado
-nas atitudes que eu deveria ter mudado antes que fosse tarde demais
-hoje eu carrego a saudade de algo que ainda vive em mim, mas que não vive mais entre nós
-carrego o peso de saber que o amor existia, e mesmo assim eu deixei escapar pelos dedos
-se antes eu dizia que esperaria, hoje eu entendo que esperar não é mais um direito
-é um desejo silencioso
-porque quando a gente erra, a gente não exige, não cobra, não implora
+nas atitudes que eu deveria ter mudado antes que fosse tarde demais`,
+`hoje eu carrego a saudade de algo que ainda vive em mim, mas que não vive mais entre nós
+carrego o peso de saber que o amor existia, e mesmo assim eu deixei escapar pelos dedos`,
+`se antes eu dizia que esperaria, hoje eu entendo que esperar não é mais um direito
+é um desejo silencioso`,
+`porque quando a gente erra, a gente não exige, não cobra, não implora
 a gente aprende
-mesmo assim, eu confesso que ainda espero uma mensagem sua dizendo que sente saudade da gente
-eu não posso te odiar por você não me amar mais como antes
+mesmo assim, eu confesso que ainda espero uma mensagem sua dizendo que sente saudade da gente`,
+`eu não posso te odiar por você não me amar mais como antes
 talvez eu não seja a pessoa certa pra você agora
-eu não sei o momento exato em que tudo deu errado com a gente, mas deu, e isso não apaga o que foi real
-eu continuo te amando, mas agora esse amor anda de mãos dadas com o respeito pela sua dor e pela sua decisão
-porque amar você também é aceitar que talvez eu não faça mais parte do seu caminho hoje
-mas no fundo do meu coração, ainda existe a esperança de que um dia nossos caminhos se reencontrem com mais calma, mais maturidade, mais cuidado
+eu não sei o momento exato em que tudo deu errado com a gente, mas deu, e isso não apaga o que foi real`,
+`eu continuo te amando, mas agora esse amor anda de mãos dadas com o respeito pela sua dor e pela sua decisão
+porque amar você também é aceitar que talvez eu não faça mais parte do seu caminho hoje`,
+`mas no fundo do meu coração, ainda existe a esperança de que um dia nossos caminhos se reencontrem com mais calma, mais maturidade, mais cuidado
 você foi a pessoa que me mostrou quem eu poderia ter sido melhor
 e mesmo que eu não tenha sido à altura no tempo certo, o que você despertou em mim não morre com o fim
 vira lição
 vira amadurecimento
-vira silêncio cheio de arrependimento e gratidão
-se algum dia a vida permitir que nossos caminhos se cruzem de novo, eu quero que você encontre um homem mais consciente, mais inteiro, mais preparado para amar do jeito que você sempre mereceu
+vira silêncio cheio de arrependimento e gratidão`,
+`se algum dia a vida permitir que nossos caminhos se cruzem de novo, eu quero que você encontre um homem mais consciente, mais inteiro, mais preparado para amar do jeito que você sempre mereceu
 e no fundo, eu espero que esse homem ainda possa ser eu
 se a vida não permitir, eu ainda assim agradeço por ter te amado
-porque amar você, mesmo perdendo, me transformou
-eu não te escrevo para te prender ao passado
+porque amar você, mesmo perdendo, me transformou`,
+`eu não te escrevo para te prender ao passado
 escrevo para libertar o que ficou preso em mim
 para reconhecer que o amor também exige responsabilidade, e que eu aprendi isso tarde
 eu sigo em frente, mas sigo carregando você em uma parte da minha história que ninguém apaga
@@ -141,38 +147,52 @@ não como ferida, mas como verdade
 porque algumas pessoas não ficam para sempre
 mas ensinam pra sempre
 e mesmo sem você aqui agora, eu continuo escolhendo ser alguém melhor
-porque foi você que me ensinou o que é amar de verdade`;
+porque foi você que me ensinou o que é amar de verdade`
+];
 
-// --- Typewriter bonito com pausas ---
-function typeWriter(text, callback){
+// --- Typewriter poético com rolagem automática ---
+function typePoem(paragraphs, callback){
   textoEl.innerHTML = '';
-  let i = 0;
+  let pIndex = 0;
 
-  function type(){
-    if(i < text.length){
-      textoEl.innerHTML += text.charAt(i);
-      i++;
-
-      // pausa em pontuação e variação natural
-      let delay = 25;
-      const char = text.charAt(i-1);
-      if(char === '.' || char === '!' || char === '?'){
-        delay = 400;
-      } else if(char === ',' || char === ';'){
-        delay = 150;
-      } else {
-        delay = 15 + Math.random()*35;
-      }
-
-      setTimeout(type, delay);
-    } else if(callback){
-      callback();
+  function typeParagraph(){
+    if(pIndex >= paragraphs.length){
+      if(callback) callback();
+      return;
     }
+
+    const pText = paragraphs[pIndex];
+    const pEl = document.createElement('p');
+    textoEl.appendChild(pEl);
+    let i = 0;
+
+    function typeChar(){
+      if(i < pText.length){
+        pEl.innerHTML += pText.charAt(i);
+        i++;
+        // pausa pontuação
+        let delay = 25;
+        const char = pText.charAt(i-1);
+        if(char === '.' || char === '!' || char === '?'){ delay = 400; }
+        else if(char === ',' || char === ';'){ delay = 150; }
+        else{ delay = 15 + Math.random()*35; }
+
+        // rolagem suave
+        conteudo.scrollTop = textoEl.scrollHeight - conteudo.clientHeight;
+
+        setTimeout(typeChar, delay);
+      } else {
+        pIndex++;
+        setTimeout(typeParagraph, 300); // pausa entre parágrafos
+      }
+    }
+    typeChar();
   }
-  type();
+
+  typeParagraph();
 }
 
-// --- Crossfade entre músicas ---
+// --- Crossfade ---
 function crossfade(a1, a2, duration=2000){
   a2.volume = 0;
   a2.currentTime = 0;
@@ -198,12 +218,12 @@ function crossfade(a1, a2, duration=2000){
 startScreen.addEventListener('click', ()=>{
   startScreen.style.display='none';
   conteudo.style.display='block';
-  
+
   audio1.currentTime = 0;
   audio1.volume = 1;
   audio1.play().catch(err=>console.log('erro audio1:', err));
 
-  typeWriter(texto1, ()=>{
+  typePoem(texto1, ()=>{
     nextBtn.style.display='inline-block';
   });
 });
@@ -212,7 +232,7 @@ startScreen.addEventListener('click', ()=>{
 nextBtn.addEventListener('click', ()=>{
   nextBtn.style.display='none';
   crossfade(audio1, audio2, 2000);
-  typeWriter(texto2);
+  typePoem(texto2);
 });
 </script>
 </body>
