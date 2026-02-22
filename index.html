@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>❤️</title>
+<title>Para Você ❤️</title>
 
 <style>
 body {
   margin: 0;
-  padding: 0;
   background: black;
   color: white;
-  font-family: Georgia, serif;
+  font-family: Arial, sans-serif;
+  text-align: center;
   overflow: hidden;
 }
 
 #startScreen {
   position: fixed;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: black;
   display: flex;
   justify-content: center;
@@ -28,52 +28,46 @@ body {
   z-index: 10;
 }
 
-#container {
+#conteudo {
   display: none;
-  height: 100vh;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-#texto {
-  max-width: 800px;
-  height: 70vh;
-  overflow-y: auto;
-  font-size: 18px;
-  line-height: 1.8;
-  text-align: center;
+  padding: 30px;
+  max-width: 700px;
+  margin: auto;
+  margin-top: 80px;
+  line-height: 1.6;
 }
 
 button {
-  margin-top: 20px;
+  margin-top: 40px;
   padding: 12px 25px;
   font-size: 16px;
   border: none;
+  border-radius: 10px;
   background: white;
   color: black;
   cursor: pointer;
-  border-radius: 5px;
-  display: none;
+}
+
+button:hover {
+  background: pink;
 }
 </style>
 </head>
+
 <body>
 
-<div id="startScreen">toque para iniciar</div>
+<div id="startScreen">Toque para iniciar ❤️</div>
 
-<div id="container">
-  <div id="texto"></div>
-  <button id="btn">clique aqui para continuar</button>
+<div id="conteudo">
+  <p id="texto"></p>
+  <button id="botao" style="display:none;">Clique aqui</button>
 </div>
 
 <audio id="audio1" src="intro.mp3"></audio>
 <audio id="audio2" src="musica.mp3"></audio>
 
 <script>
-
-const parte1 = `eu esperaria você o tempo que fosse preciso. esperaria em silêncio, esperaria doendo, esperaria acreditando. porque quando o amor é verdadeiro, o tempo deixa de ser um peso e passa a ser prova. e eu provaria todos os dias que o que eu sinto por você não é passageiro.
+const texto1 = `eu esperaria você o tempo que fosse preciso. esperaria em silêncio, esperaria doendo, esperaria acreditando. porque quando o amor é verdadeiro, o tempo deixa de ser um peso e passa a ser prova. e eu provaria todos os dias que o que eu sinto por você não é passageiro.
 
 eu te amo hoje e sempre, e quando eu digo sempre não é uma palavra bonita jogada ao vento, é uma decisão que eu faço dentro do meu coração todos os dias. porque amar você não é impulso, não é carência, não é ilusão. é escolha. é certeza. é paz no meio do caos.
 
@@ -108,7 +102,7 @@ te amo com planos e com oração.
 te amo com medo de perder, mas com coragem de lutar.
 e se depender de mim, você nunca vai duvidar do quanto é amada`;
 
-const parte2 = `e agora eu escrevo de um lugar diferente
+const texto2 = `e agora eu escrevo de um lugar diferente
 não é mais o lugar da espera cheia de esperança, é o lugar do silêncio que ficou depois que você se foi
 e dói admitir, mas a sua ausência não foi obra do acaso, nem do tempo, nem do destino, foi erro meu
 talvez a gente nem se fale mais
@@ -158,59 +152,46 @@ mas ensinam pra sempre
 e mesmo sem você aqui agora, eu continuo escolhendo ser alguém melhor
 porque foi você que me ensinou o que é amar de verdade`;
 
-const texto = document.getElementById("texto");
-const btn = document.getElementById("btn");
+const textoElemento = document.getElementById("texto");
+const botao = document.getElementById("botao");
+const startScreen = document.getElementById("startScreen");
+const conteudo = document.getElementById("conteudo");
 const audio1 = document.getElementById("audio1");
 const audio2 = document.getElementById("audio2");
-const startScreen = document.getElementById("startScreen");
-const container = document.getElementById("container");
 
-let velocidade = 25;
-
-function escrever(conteudo, callback) {
-  texto.innerHTML = "";
+function escreverTexto(texto, callback) {
+  textoElemento.innerHTML = "";
   let i = 0;
 
   function digitar() {
-    if (i < conteudo.length) {
-      if (conteudo[i] === "\n") {
-        texto.innerHTML += "<br><br>";
-      } else {
-        texto.innerHTML += conteudo[i];
-      }
+    if (i < texto.length) {
+      textoElemento.innerHTML += texto.charAt(i);
       i++;
-      texto.scrollTop = texto.scrollHeight;
-      setTimeout(digitar, velocidade);
-    } else {
-      if (callback) callback();
+      setTimeout(digitar, 30);
+    } else if (callback) {
+      callback();
     }
   }
 
   digitar();
 }
 
-startScreen.addEventListener("click", () => {
+startScreen.addEventListener("click", function() {
   startScreen.style.display = "none";
-  container.style.display = "flex";
-
+  conteudo.style.display = "block";
   audio1.play();
-
-  escrever(parte1, () => {
-    btn.style.display = "block";
+  escreverTexto(texto1, function() {
+    botao.style.display = "inline-block";
   });
 });
 
-btn.addEventListener("click", () => {
-  btn.style.display = "none";
-
+botao.addEventListener("click", function() {
   audio1.pause();
   audio1.currentTime = 0;
-
   audio2.play();
-
-  escrever(parte2);
+  botao.style.display = "none";
+  escreverTexto(texto2);
 });
-
 </script>
 
 </body>
