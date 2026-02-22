@@ -12,7 +12,8 @@ body {
   color: white;
   font-family: Arial, sans-serif;
   text-align: center;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 #startScreen {
@@ -167,7 +168,7 @@ function escreverTexto(texto, callback) {
     if (i < texto.length) {
       textoElemento.innerHTML += texto.charAt(i);
       i++;
-      setTimeout(digitar, 30);
+      setTimeout(digitar, 15);
     } else if (callback) {
       callback();
     }
@@ -179,7 +180,9 @@ function escreverTexto(texto, callback) {
 startScreen.addEventListener("click", function() {
   startScreen.style.display = "none";
   conteudo.style.display = "block";
-  audio1.play();
+
+  audio1.play().catch(err => console.log("Erro ao tocar audio1:", err));
+
   escreverTexto(texto1, function() {
     botao.style.display = "inline-block";
   });
@@ -188,7 +191,9 @@ startScreen.addEventListener("click", function() {
 botao.addEventListener("click", function() {
   audio1.pause();
   audio1.currentTime = 0;
-  audio2.play();
+
+  audio2.play().catch(err => console.log("Erro ao tocar audio2:", err));
+
   botao.style.display = "none";
   escreverTexto(texto2);
 });
