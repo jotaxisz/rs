@@ -26,11 +26,13 @@ body {
 #conteudo {
   display:none;
   max-width:700px;
-  margin: auto;
+  margin:auto;
   margin-top:50px;
-  line-height:1.6;
+  line-height:1.7;
   text-align:left;
   padding:0 20px;
+  overflow-y: auto;
+  max-height: 80vh;
 }
 </style>
 </head>
@@ -141,15 +143,28 @@ mas ensinam pra sempre
 e mesmo sem você aqui agora, eu continuo escolhendo ser alguém melhor
 porque foi você que me ensinou o que é amar de verdade`;
 
-// --- Typewriter ---
+// --- Typewriter bonito com pausas ---
 function typeWriter(text, callback){
   textoEl.innerHTML = '';
-  let i=0;
+  let i = 0;
+
   function type(){
     if(i < text.length){
       textoEl.innerHTML += text.charAt(i);
       i++;
-      setTimeout(type, 25);
+
+      // pausa em pontuação e variação natural
+      let delay = 25;
+      const char = text.charAt(i-1);
+      if(char === '.' || char === '!' || char === '?'){
+        delay = 400;
+      } else if(char === ',' || char === ';'){
+        delay = 150;
+      } else {
+        delay = 15 + Math.random()*35;
+      }
+
+      setTimeout(type, delay);
     } else if(callback){
       callback();
     }
@@ -157,7 +172,7 @@ function typeWriter(text, callback){
   type();
 }
 
-// --- Crossfade ---
+// --- Crossfade entre músicas ---
 function crossfade(a1, a2, duration=2000){
   a2.volume = 0;
   a2.currentTime = 0;
@@ -166,7 +181,7 @@ function crossfade(a1, a2, duration=2000){
   const steps = 20;
   let step = 0;
   const interval = duration / steps;
-  
+
   const fade = setInterval(()=>{
     step++;
     a1.volume = Math.max(0, 1*(1 - step/steps));
