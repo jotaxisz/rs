@@ -1,87 +1,129 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 <title>Para Você ❤️</title>
 
 <style>
-body{
-  margin:0;
-  padding:0;
-  background:black;
-  color:white;
-  font-family:Arial, Helvetica, sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  text-align:center;
-  overflow:hidden;
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+body {
+  height: 100vh;
+  background: #000;
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
 }
 
-#startScreen{
-  position:fixed;
-  top:0;
-  left:0;
+.container {
+  width: 100%;
+  max-width: 700px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100vh;
+}
+
+.text-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.typing {
+  font-size: 1.2em;
+  line-height: 1.6em;
+  white-space: pre-line;
+  border-right: 2px solid #fff;
+  padding-right: 6px;
+}
+
+@keyframes blink {
+  0%, 50% { border-color: #fff; }
+  51%, 100% { border-color: transparent; }
+}
+.typing { animation: blink 1s infinite; }
+
+.heart {
+  display: none;
+  margin-top: 15px;
+  font-size: 5.5em;
+  animation: pulse 1.4s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.btn {
+  display: none;
+  margin-top: 15px;
+  padding: 12px 25px;
+  font-size: 1em;
+  border-radius: 10px;
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+#start {
+  position: fixed;
+  top:0; left:0;
   width:100%;
   height:100%;
+  background:#000;
   display:flex;
   justify-content:center;
   align-items:center;
-  background:black;
+  color:#fff;
+  font-size:1.2em;
   cursor:pointer;
-  font-size:24px;
-  z-index:9999; /* garante que fique na frente */
+  z-index:10;
+  text-align:center;
+  padding: 20px;
 }
 
-#conteudo{
-  display:none;
-  padding:20px;
-  max-width:600px;
-}
-
-button{
-  margin-top:20px;
-  padding:10px 20px;
-  font-size:18px;
-  cursor:pointer;
-  border:none;
-  border-radius:10px;
-}
+audio { position: fixed; bottom: 10px; left: 10px; width:1px; height:1px; opacity:0.01; }
 </style>
 </head>
+
 <body>
 
-<div id="startScreen">
-  Toque aqui para iniciar ❤️
-</div>
+<div id="start">Toque aqui para iniciar ❤️</div>
 
-<div id="conteudo">
-  <p id="texto"></p>
-  <button id="botao" style="display:none;">Continuar</button>
+<div class="container">
+  <div class="text-wrapper">
+    <div id="text" class="typing"></div>
+  </div>
+  <div id="heart" class="heart">❤️</div>
+  <button id="btn" class="btn">Clique aqui 💗</button>
 </div>
 
 <audio id="audio1" preload="auto" loop>
   <source src="intro.mp3" type="audio/mpeg">
 </audio>
-
 <audio id="audio2" preload="auto">
   <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
+const textEl = document.getElementById("text");
+const startEl = document.getElementById("start");
+const btnEl = document.getElementById("btn");
+const heartEl = document.getElementById("heart");
 
-  const startScreen = document.getElementById("startScreen");
-  const conteudo = document.getElementById("conteudo");
-  const textoEl = document.getElementById("texto");
-  const botao = document.getElementById("botao");
+const audio1 = document.getElementById("audio1");
+const audio2 = document.getElementById("audio2");
 
-  const audio1 = document.getElementById("audio1");
-  const audio2 = document.getElementById("audio2");
-
-  const texto1 = "eu esperaria você o tempo que fosse preciso. esperaria em silêncio, esperaria doendo, esperaria acreditando. porque quando o amor é verdadeiro, o tempo deixa de ser um peso e passa a ser prova. e eu provaria todos os dias que o que eu sinto por você não é passageiro.
+// --- TEXTOS ---
+const texto1 = `eu esperaria você o tempo que fosse preciso. esperaria em silêncio, esperaria doendo, esperaria acreditando. porque quando o amor é verdadeiro, o tempo deixa de ser um peso e passa a ser prova. e eu provaria todos os dias que o que eu sinto por você não é passageiro.
 
 eu te amo hoje e sempre, e quando eu digo sempre não é uma palavra bonita jogada ao vento, é uma decisão que eu faço dentro do meu coração todos os dias. porque amar você não é impulso, não é carência, não é ilusão. é escolha. é certeza. é paz no meio do caos.
 
@@ -103,7 +145,7 @@ eu quero ser o homem que segura sua mão quando o mundo pesar. quero ser aquele 
 
 eu penso na nossa vida daqui a muitos anos. penso nas conversas na sala, nas risadas espalhadas pela casa, na gente envelhecendo junto e ainda se olhando com o mesmo brilho no olhar. penso em construir algo que não seja só bonito por fora, mas forte por dentro. algo que o tempo não desgaste, só amadureça.
 
-e se algum dia você tiver medo, insegurança ou dúvidas, eu quero estar lá. não para te pressionar, não para te cobrar, mas para te lembrar que o meu sentimento é firme. eu não quero um amor raso, não quero algo pela metade. eu quero intensidade, verdade, profundidade. e é isso que eu tenho para oferecer.
+e se algum dia você tiver medo, insegurança ou dúvidas, eu quero estar lá. não para te pressionar, não para te cobrar, mas para te lembrar que o meu sentimento é firme. eu não quero um amor raso, não quero algo pela metade, eu quero intensidade, verdade, profundidade. e é isso que eu tenho para oferecer.
 
 você me ensinou que amar também é ter coragem de ficar. e eu fico. eu fico porque você vale a pena. eu fico porque o que eu sinto é maior do que qualquer medo. eu fico porque quando eu penso em desistir, a ideia de viver sem você dói muito mais.
 
@@ -114,9 +156,9 @@ eu agradeço a deus por ter colocado você no meu caminho, porque você não é 
 eu te amo com calma e com intensidade.
 te amo com planos e com oração.
 te amo com medo de perder, mas com coragem de lutar.
-e se depender de mim, você nunca vai duvidar do quanto é amada.";
-  
-  const texto2 = "e agora eu escrevo de um lugar diferente
+e se depender de mim, você nunca vai duvidar do quanto é amada`;
+
+const texto2 = `e agora eu escrevo de um lugar diferente
 não é mais o lugar da espera cheia de esperança, é o lugar do silêncio que ficou depois que você se foi
 e dói admitir, mas a sua ausência não foi obra do acaso, nem do tempo, nem do destino, foi erro meu
 talvez a gente nem se fale mais
@@ -164,51 +206,46 @@ não como ferida, mas como verdade
 porque algumas pessoas não ficam para sempre
 mas ensinam pra sempre
 e mesmo sem você aqui agora, eu continuo escolhendo ser alguém melhor
-porque foi você que me ensinou o que é amar de verdade.";
+porque foi você que me ensinou o que é amar de verdade`;
 
-  function escreverTexto(texto, callback){
-    textoEl.innerHTML = "";
-    let i = 0;
-
-    function digitar(){
-      if(i < texto.length){
-        textoEl.innerHTML += texto.charAt(i);
-        i++;
-        setTimeout(digitar, 40);
-      } else if(callback){
-        callback();
-      }
+// --- TYPEWRITER ---
+function escreverTexto(texto, callback){
+  textEl.innerHTML = "";
+  let i = 0;
+  function digitar(){
+    if(i < texto.length){
+      textEl.innerHTML += texto.charAt(i);
+      i++;
+      setTimeout(digitar, 30);
+      textEl.parentElement.scrollTop = textEl.scrollHeight;
+    } else if(callback){
+      callback();
     }
-
-    digitar();
   }
+  digitar();
+}
 
-  startScreen.addEventListener("click", function(){
-
-    audio1.volume = 0.4;
-    audio1.play().catch(err => console.log("Erro audio1:", err));
-
-    startScreen.style.display = "none";
-    conteudo.style.display = "block";
-
-    escreverTexto(texto1, function(){
-      botao.style.display = "inline-block";
-    });
+// --- START ---
+startEl.addEventListener("click", ()=>{
+  startEl.style.display = "none";
+  audio1.volume = 0.3;
+  audio1.play().catch(err=>console.log("erro audio1:", err));
+  escreverTexto(texto1, ()=>{
+    heartEl.style.display = "block";
+    btnEl.style.display = "inline-block";
   });
+});
 
-  botao.addEventListener("click", function(){
+// --- BOTÃO ---
+btnEl.addEventListener("click", ()=>{
+  btnEl.style.display = "none";
 
-    audio1.pause();
-    audio1.currentTime = 0;
+  audio1.pause();
+  audio1.currentTime = 0;
+  audio2.volume = 0.5;
+  audio2.play().catch(err=>console.log("erro audio2:", err));
 
-    audio2.volume = 1;
-    audio2.currentTime = 0;
-    audio2.play().catch(err => console.log("Erro audio2:", err));
-
-    botao.style.display = "none";
-    escreverTexto(texto2);
-  });
-
+  escreverTexto(texto2);
 });
 </script>
 
