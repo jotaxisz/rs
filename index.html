@@ -16,6 +16,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* BOTÃO DE INÍCIO */
@@ -43,6 +45,7 @@ body {
   overflow-y:auto;
   scroll-behavior: smooth; /* rolagem suave */
   font-size:1.25em;
+  padding-right: 10px; /* espaço para scroll */
 }
 
 /* ESTILO POEMA */
@@ -149,10 +152,14 @@ function typeWriterLetras(versos, callback){
         if(j < versos[i].length){
           span.textContent += versos[i].charAt(j);
           j++;
-          textoEl.scrollTop = textoEl.scrollHeight; // rolagem automática
-          setTimeout(typeLetra, 35); // velocidade das letras
+          // Atualiza scroll a cada 10 letras
+          if(j % 10 === 0){
+            span.scrollIntoView({behavior:'smooth', block:'end'});
+          }
+          setTimeout(typeLetra, 35);
         } else {
           i++;
+          span.scrollIntoView({behavior:'smooth', block:'end'});
           setTimeout(typeVerso, 600); // pausa entre versos
         }
       }
