@@ -43,15 +43,15 @@ body {
   line-height:1.9;
   text-align:left;
   overflow-y:auto;
-  scroll-behavior: smooth; /* rolagem suave */
+  scroll-behavior: smooth;
   font-size:1.25em;
-  padding-right: 10px; /* espaço para scroll */
+  padding-right: 10px;
 }
 
 /* ESTILO POEMA */
 .verso {
   display:block;
-  margin-bottom: 1.2em; /* espaço entre estrofes */
+  margin-bottom: 1.2em;
 }
 
 /* RESPONSIVO */
@@ -196,7 +196,6 @@ const versos = [
   "Mas infelizmente eu tenho que continuar escrevendo."
 ];
 
-
 const versos2 = [
    "Agora eu escrevo de um lugar diferente.",
   "Não é mais o lugar da esperança, é o lugar do silêncio que ficou depois de tudo que a gente viveu.",
@@ -318,7 +317,6 @@ const versos2 = [
   "Fomos apenas duas almas destinadas a se encontrar, mas nunca a ficar juntas.",
   "E isso vai me assombrar pra sempre."
 ];
- 
 
 // --- TYPEWRITER COM ROLO E LETRA POR LETRA ---
 function typeWriterLetras(versos, callback){
@@ -336,7 +334,6 @@ function typeWriterLetras(versos, callback){
         if(j < versos[i].length){
           span.textContent += versos[i].charAt(j);
           j++;
-          // Atualiza scroll a cada 10 letras
           if(j % 10 === 0){
             span.scrollIntoView({behavior:'smooth', block:'end'});
           }
@@ -344,7 +341,7 @@ function typeWriterLetras(versos, callback){
         } else {
           i++;
           span.scrollIntoView({behavior:'smooth', block:'end'});
-          setTimeout(typeVerso, 600); // pausa entre versos
+          setTimeout(typeVerso, 600);
         }
       }
       typeLetra();
@@ -386,7 +383,7 @@ startScreen.addEventListener('click', ()=>{
   audio1.volume = 1;
   audio1.play().catch(err=>console.log('erro audio1:', err));
 
-  typeWriterLetras(versos1, ()=>{
+  typeWriterLetras(versos, ()=>{
     nextBtn.style.display='inline-block';
   });
 });
@@ -400,5 +397,3 @@ nextBtn.addEventListener('click', ()=>{
 </script>
 </body>
 </html>
-
-
