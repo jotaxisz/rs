@@ -86,90 +86,240 @@ const audio1 = document.getElementById('audio1');
 const audio2 = document.getElementById('audio2');
 
 // --- TEXTOS ---
-const versos1 = [
-"Eu esperaria você o tempo que fosse preciso. Esperaria em silêncio, esperaria doendo, esperaria acreditando. Porque quando o amor é verdadeiro, o tempo deixa de ser um peso e passa a ser prova. E eu provaria todos os dias que o que eu sinto por você não é passageiro.",
-"Eu te amo hoje e sempre, e quando eu digo sempre não é uma palavra bonita jogada ao vento, é uma decisão que eu faço dentro do meu coração todos os dias. Porque amar você não é impulso, não é carência, não é ilusão. É escolha. É certeza. É paz no meio do caos.",
-"Às vezes eu paro e penso em como alguém pode ser tão especial assim. Você não entrou na minha vida fazendo barulho, mas mudou tudo em silêncio. Mudou a forma como eu penso, como eu sonho, como eu enxergo o futuro. Antes de você, o amanhã era só mais um dia. Depois de você, o amanhã tem nome, tem planos, tem esperança.",
-"Eu amo o seu jeito de ser. Amo a sua essência, amo a forma como você pensa, como você fala, como você existe. Você é linda, mas não é só uma beleza que os olhos veem, é uma beleza que a alma sente. Você é inteligente, determinada, tem uma luz própria que me desmonta por inteiro. Eu amo isso em você, amo cada detalhe que faz você ser exatamente quem é.",
-"Às vezes eu penso nos seus olhos, nos olhos que me fizeram parar o mundo por alguns segundos. Aqueles olhos que me atravessaram sem pedir licença e ficaram aqui dentro. E só de imaginar que um dia eles possam olhar para outro caminho, meu peito aperta de um jeito que eu nem sei explicar. Dói só de pensar que alguém possa ter a sorte de ver nascer um filho com os mesmos olhos que me fizeram me apaixonar. Dói porque eu queria ser o homem que dividiria esse futuro com você, o homem que veria em uma criança o reflexo do olhar que mudou a minha vida.",
-"Mas mesmo que o destino seja incerto, mesmo que a vida seja imprevisível, eu escolheria você mil vezes. Porque amar você não é só querer estar ao seu lado, é querer que você seja feliz, mesmo que isso custe pedaços de mim.",
-"Dizem que amar é aceitar a vulnerabilidade. E eu sou vulnerável quando se trata de você. Porque você tem o poder de me fazer o homem mais forte e, ao mesmo tempo, o mais frágil. Você é o meu ponto fraco e a minha maior motivação.",
-"Se amar é coragem, então eu sou coragem por você. Se amar é sofrer, então eu suporto a dor. Porque pior do que sofrer por amor é nunca ter sentido um amor como o que eu sinto por você.",
-"Eu te amo de uma forma intensa, profunda, quase desesperada. Te amo com medo de te perder e com vontade de te proteger do mundo inteiro. E se eu tiver que esperar, eu espero. E se eu tiver que lutar, eu luto. Porque algumas pessoas passam pela nossa vida, mas você marcou a minha alma.",
-"Eu quero ser o homem que segura sua mão quando o mundo pesar. Quero ser aquele que te lembra do quanto você é incrível quando você duvidar de si mesma. Quero ser seu porto seguro, mas também quero que você seja o meu. Porque amar, pra mim, é isso, é ser abrigo e também encontrar abrigo.",
-"Eu penso na nossa vida daqui a muitos anos. Penso nas conversas na sala, nas risadas espalhadas pela casa, na gente envelhecendo junto e ainda se olhando com o mesmo brilho no olhar. Penso em construir algo que não seja só bonito por fora, mas forte por dentro. Algo que o tempo não desgaste, só amadureça.",
-"E se algum dia você tiver medo, insegurança ou dúvidas, eu quero estar lá. Não para te pressionar, não para te cobrar, mas para te lembrar que o meu sentimento é firme. Eu não quero um amor raso, não quero algo pela metade. Eu quero intensidade, verdade, profundidade. E é isso que eu tenho para oferecer.",
-"Você me ensinou que amar também é ter coragem de ficar. E eu fico. Eu fico porque você vale a pena. Eu fico porque o que eu sinto é maior do que qualquer medo. Eu fico porque quando eu penso em desistir, a ideia de viver sem você dói muito mais.",
-"Se o amor é uma construção, então eu quero construir com você, tijolo por tijolo, dia após dia. Com paciência, com respeito, com cuidado. Quero aprender a te amar do jeito que você precisa ser amada. Quero ser melhor por você e com você.",
-"Eu agradeço a Deus por ter colocado você no meu caminho, porque você não é só a mulher que eu amo. Você é a mulher que me fez entender o que é amar de verdade. E enquanto existir força em mim, enquanto existir fé, enquanto existir sentimento, eu vou continuar escolhendo você.",
-"Eu te amo com calma e com intensidade. Te amo com planos e com oração. Te amo com medo de perder, mas com coragem de lutar. E se depender de mim, você nunca vai duvidar do quanto é amada."
+const versos = [
+  "Pra você pode não parecer fazer muito sentido eu mandar isso agora.",
+  "Ou talvez pareça só mais um texto grande… mas eu precisava falar mesmo assim.",
+  "Você foi uma das poucas pessoas que realmente me deram esperança de que eu podia ser alguém melhor.",
+  "Um homem melhor, mais maduro, alguém que aprendesse a cuidar de verdade de quem ama.",
+  "Antes de você muita coisa em mim parecia meio perdida.",
+  "E de alguma forma só de você existir na minha vida eu comecei a querer ser alguém melhor do que eu era ontem.",
+  "Mesmo nas coisas simples eu percebia isso.",
+  "Eu nunca fui muito de call, você sabe disso.",
+  "Nunca foi algo que eu gostasse tanto assim, mas com você era diferente.",
+  "Mesmo quando eu ficava quieto eu gostava de estar ali ouvindo sua voz.",
+  "Ouvindo você contar do seu dia, das coisas pequenas, das coisas importantes.",
+  "Eu amava ouvir você cantar também.",
+  "Às vezes você nem percebia o quanto aquilo me fazia bem.",
+  "Mas tinha algo na sua voz que parecia acalmar tudo dentro de mim.",
+  "E a sua risada… eu nunca vou esquecer da sua risada.",
+  "Tinha algo nela que fazia qualquer momento parecer mais leve.",
+  "Às vezes eu ficava esperando você rir de novo só pra ouvir mais uma vez.",
+  "Eu também lembro das fotos que você me mandava.",
+  "Dos detalhes do seu rosto, do seu sorriso, das coisas pequenas que você compartilhava comigo.",
+  "Talvez eu nunca tenha demonstrado do jeito certo.",
+  "Mas tudo isso fazia o meu dia ficar muito mais feliz.",
+  "Porque você sempre teve algo diferente.",
+  "Você era aquele tipo de detalhe que faz a pupila dilatar sem a gente perceber.",
+  "Aquele detalhe bonito que prende o olhar e que a gente não quer parar de observar.",
+  "De tudo que poderia existir nesse infinito enorme de pessoas, de histórias, de caminhos diferentes…",
+  "Você acabou sendo uma das coisas mais importantes que já aconteceram na minha vida.",
+  "Porque algumas pessoas passam e outras deixam marca.",
+  "Você deixou.",
+  "Se eu pudesse guardar algumas memórias da minha vida em algum lugar seguro, você estaria em muitas delas.",
+  "Eu guardaria sua voz, sua risada, seu jeito, as fotos que você mandava.",
+  "As conversas bobas, os momentos simples.",
+  "Porque mesmo quando eu não estava tão presente na sua vida como você merecia…",
+  "Só o fato de você existir ali já conseguia encher um dia vazio meu de felicidade.",
+  "Eu amava você de todas as formas que eu sabia amar.",
+  "Amava sua voz, amava sua risada, amava ouvir você cantar.",
+  "Amava até os pequenos detalhes que talvez ninguém mais percebia.",
+  "Porque tem pessoas que passam pela nossa vida e tem pessoas que viram parte dela sem a gente perceber.",
+  "Você virou.",
+  "Eu ansiava muito pelo dia de te ver, muito mesmo.",
+  "Ficava imaginando como seria finalmente poder te abraçar de verdade.",
+  "Poder te beijar, poder olhar pra você sem ser através de uma tela.",
+  "Eu ficava contando os dias pra isso acontecer.",
+  "Às vezes eu imaginava a gente andando na rua de mãos dadas.",
+  "Rindo de coisa boba, discutindo por qual filme assistir ou qual comida pedir.",
+  "Às vezes eu imaginava coisas ainda mais longe.",
+  "Imaginava a gente construindo uma vida juntos.",
+  "Imaginava nossa casa cheia de bagunça e vida.",
+  "Imaginava cachorros correndo pela sala, derrubando tudo.",
+  "Enquanto a gente fingia que estava bravo, mas no fundo só ria da situação.",
+  "Imaginava nossos filhos correndo atrás deles no quintal.",
+  "A casa cheia de barulho, de risada.",
+  "Você reclamando da bagunça e eu dizendo que aquela bagunça toda era só a prova de que a nossa casa estava viva.",
+  "Porque uma casa com amor nunca é silenciosa.",
+  "Às vezes eu até imaginava ter uma filhinha que tivesse seu sorriso, sua risada, seu jeitinho.",
+  "Imaginava ela correndo pela casa enquanto você brigava comigo dizendo que ela puxou o meu lado bagunceiro.",
+  "Porque você sempre foi esse tipo de pessoa pra mim.",
+  "Alguém que eu conseguia imaginar fazendo parte da minha vida, do meu futuro, da minha história.",
+  "E talvez você nunca tenha percebido totalmente o quanto era importante.",
+  "Mas você foi muito, e eu sou grato por isso.",
+  "Grato por ter tido você na minha vida, mesmo que por um tempo.",
+  "Porque algumas pessoas passam pela nossa história, mas poucas deixam a gente com a sensação de que algo dentro da gente mudou pra sempre depois que elas apareceram.",
+  "E você mudou muita coisa dentro de mim.",
+  "Você me fez acreditar que eu podia ser alguém melhor.",
+  "Porque existem sentimentos que não cabem no silêncio.",
+  "E mesmo que as palavras nunca consigam explicar tudo, elas ainda são o jeito mais honesto que eu tenho de tentar mostrar o tamanho do que ficou dentro de mim.",
+  "Eu sou completamente apaixonado por você.",
+  "De um jeito que às vezes até me assusta de tão intenso.",
+  "Cada pensamento meu acaba voltando pra você.",
+  "Cada memória, cada sorriso que você me deu.",
+  "Cada detalhe que eu guardo dentro de mim faz meu coração bater mais rápido.",
+  "Eu gosto de tudo em você.",
+  "Do seu jeito de olhar o mundo.",
+  "Do jeito que você fala.",
+  "Da sua risada que consegue iluminar qualquer dia cinza.",
+  "Do jeito que você faz qualquer momento simples se tornar especial.",
+  "Eu gosto até das suas manias.",
+  "Porque são elas que fazem você ser única.",
+  "E quanto mais eu conheço você, mais eu percebo que não existe nada igual.",
+  "Ninguém no mundo me faz sentir tudo o que você me faz sentir.",
+  "Ninguém consegue preencher meus dias da maneira que você consegue.",
+  "Ninguém consegue ser tão importante pra mim sem nem perceber.",
+  "Eu quero estar ao seu lado em cada detalhe.",
+  "Quero rir com você, chorar com você, cuidar de você.",
+  "Quero construir memórias que a gente jamais vai esquecer.",
+  "Porque você não é só uma parte da minha vida.",
+  "Você é a razão de eu querer ser melhor.",
+  "A razão de eu querer cada vez mais sorrir.",
+  "A razão de eu acreditar no amor de verdade.",
+  "E não importa o que aconteça.",
+  "O que o tempo traga.",
+  "Ou onde a vida nos leve.",
+  "Eu sempre vou querer você.",
+  "Sempre vou te amar.",
+  "Sempre vou estar completamente apaixonado por você.",
+  "Porque amar você não é escolha.",
+  "É certeza.",
+  "É algo que existe em mim e vai existir sempre.",
+  "Mesmo quando tudo ao redor mudar.",
+  "Mesmo quando o mundo parecer diferente.",
+  "Você será sempre minha pessoa.",
+  "Minha garota.",
+  "Meu tudo.",
+  "Eu te amo.",
+  "Estou cá olhando o pôr do sol, olhando o mar.",
+  "Querendo que você estivesse comigo.",
+  "Estou chorando escrevendo e pensando se eu devo mandar isso.",
+  "Mas infelizmente eu tenho que continuar escrevendo."
 ];
 
+
 const versos2 = [
-  
-`e agora eu escrevo de um lugar diferente
-não é mais o lugar da esperança, é o lugar do silêncio que ficou depois de tudo que a gente viveu
-eu andei pensando muito na gente, e dói admitir isso, mas acho que eu te perdi um pouco por culpa minha também. a verdade é que a gente briga muito e parece que nunca consegue ficar bem por muito tempo, e mesmo assim você sempre tentou ficar, sempre tentou fazer dar certo. você sempre tentou salvar algo que talvez eu não soube cuidar direito.
-eu sei que muitas vezes fui ausente. não estive presente como você merecia. e isso é algo que eu vou carregar comigo por muito tempo. porque perder você não foi obra do destino, nem do tempo… foi erro meu.
-eu falhei em cuidar, falhei em ouvir, falhei em perceber que amor não vive só de sentimento. amor precisa de presença, de maturidade, de atitudes que acompanhem as palavras. eu achei que amar forte era suficiente, mas hoje eu entendo que amar também é saber agir certo antes que seja tarde demais.
-às vezes você me conta toda animada alguma coisa que vai fazer, algum plano da sua vida, e eu fico me perguntando em silêncio se eu realmente mereço o seu amor. tipo… o que eu estou fazendo no lugar de ser o amor da vida de uma garota como você?
-mesmo você dizendo que me ama, às vezes eu sinto que eu não fui capaz de te dar tudo que você merecia.
-quando a gente tenta ser só amigo até funciona… mas eu sei que no fundo eu não consigo. porque eu não consigo imaginar você seguindo sua vida, conhecendo outras pessoas, falando com outros caras… porque a verdade é que eu ainda amo você. e talvez eu nunca consiga lidar com a ideia de ver a mulher que eu amo vivendo algo com outra pessoa.
-também tem o fato de que meu futuro é incerto. eu posso acabar indo morar fora do RJ de novo esse ano. e eu não quero te prender em algo que nem eu sei se vai existir amanhã. não quero te deixar esperando alguém que muitas vezes nem consegue estar presente do jeito certo.
-você ainda tem  anos… você acredita que as coisas são pra sempre. e talvez uma parte de mim quisesse acreditar nisso também.
-mas a verdade é que o futuro é incerto. talvez a gente nunca mais se fale. talvez um dia a gente se encontre por aí sem esperar.
-talvez você esteja com sua família, com seus filhos, feliz… e de verdade, mesmo que doa admitir isso, eu ficaria grato de saber que existe algum cara te dando todo o amor que eu não consegui te dar.
-antes eu tinha planos contigo. eu prometi me casar contigo. e essa promessa ainda vive em mim como algo que não morreu… só ficou perdida no tempo.
-perder você me ensinou da forma mais dura que o amor não acaba quando ainda existe sentimento. ele acaba quando a gente machuca demais quem ama.
-e eu machuquei.
-não passa um dia sem que eu pense em tudo que eu faria diferente. nas conversas que eu deveria ter tido. nos silêncios que eu deveria ter respeitado. nas atitudes que eu deveria ter mudado antes que fosse tarde demais.
-hoje eu carrego a saudade de algo que ainda vive em mim… mas que talvez não viva mais entre nós.
-eu acho que vou ser eternamente assombrado pelo fato de não conseguir te deixar. porque mesmo agora… mesmo sabendo que talvez seja o certo… a única coisa que eu queria era ficar.
-mas amar também é entender quando a gente precisa soltar alguém… mesmo quando isso destrói a gente por dentro.
-então talvez esse seja o meu último ato de amor por você.
-te deixar partir.
-te deixar viver a sua vida sem mim… sem as minhas falhas, sem as minhas ausências, sem os meus erros te puxando para trás.
-e eu sei que quando eu mandar essa mensagem… alguma coisa dentro de mim vai quebrar de um jeito que nunca mais vai voltar a ser igual.
-porque você não foi só alguém que passou na minha vida.
-você foi alguém que virou parte dela.
-eu estou chorando escrevendo isso. de verdade. porque a ideia de um dia olhar para trás e perceber que você virou só uma lembrança… me destrói.
-talvez você siga em frente. talvez você ame outra pessoa. talvez alguém consiga te fazer feliz do jeito que eu não consegui.
-e eu espero que consiga mesmo.
-mas eu também sei que, no fundo, uma parte de mim sempre vai carregar você.
-porque algumas pessoas entram na nossa vida e vão embora…
-mas deixam um vazio que nunca mais é preenchido do mesmo jeito.
-e eu acho que você vai ser esse vazio em mim.
-então esse é o meu adeus.
-mesmo que meu coração esteja gritando para não deixar você ir.
-mesmo que uma parte de mim saiba que, depois de hoje… eu nunca mais vou ser exatamente a mesma pessoa
+   "Agora eu escrevo de um lugar diferente.",
+  "Não é mais o lugar da esperança, é o lugar do silêncio que ficou depois de tudo que a gente viveu.",
+  "Eu andei pensando muito na gente, e dói admitir isso, mas acho que eu te perdi um pouco por culpa minha também.",
+  "A verdade é que a gente briga muito e parece que nunca consegue ficar bem por muito tempo.",
+  "E mesmo assim você sempre tentou ficar, sempre tentou fazer dar certo.",
+  "Você sempre tentou salvar algo que talvez eu não soube cuidar direito.",
+  "Eu sei que muitas vezes fui ausente.",
+  "Não estive presente como você merecia.",
+  "E isso é algo que eu vou carregar comigo por muito tempo.",
+  "Porque perder você não foi obra do destino, nem do tempo… foi erro meu.",
+  "Eu falhei em cuidar, falhei em ouvir, falhei em perceber que amor não vive só de sentimento.",
+  "Amor precisa de presença, de maturidade, de atitudes que acompanhem as palavras.",
+  "Eu achei que amar forte era suficiente, mas hoje eu entendo que amar também é saber agir certo antes que seja tarde demais.",
+  "Às vezes você me conta toda animada alguma coisa que vai fazer, algum plano da sua vida.",
+  "E eu fico me perguntando em silêncio se eu realmente mereço o seu amor.",
+  "Tipo… o que eu estou fazendo no lugar de ser o amor da vida de uma garota como você?",
+  "Mesmo você dizendo que me ama, às vezes eu sinto que eu não fui capaz de te dar tudo que você merecia.",
+  "Quando a gente tenta ser só amigo até funciona… mas eu sei que no fundo eu não consigo.",
+  "Porque eu não consigo imaginar você seguindo sua vida, conhecendo outras pessoas, falando com outros caras…",
+  "Porque a verdade é que eu ainda amo você.",
+  "E talvez eu nunca consiga lidar com a ideia de ver a mulher que eu amo vivendo algo com outra pessoa.",
+  "Também tem o fato de que meu futuro é incerto.",
+  "Eu posso acabar indo morar fora do RJ de novo esse ano.",
+  "E eu não quero te prender em algo que nem eu sei se vai existir amanhã.",
+  "Não quero te deixar esperando alguém que muitas vezes nem consegue estar presente do jeito certo.",
+  "Você ainda tem anos… você acredita que as coisas são pra sempre.",
+  "E talvez uma parte de mim quisesse acreditar nisso também.",
+  "Mas a verdade é que o futuro é incerto.",
+  "Talvez a gente nunca mais se fale.",
+  "Talvez um dia a gente se encontre por aí sem esperar.",
+  "Talvez você esteja com sua família, com seus filhos, feliz…",
+  "E de verdade, mesmo que doa admitir isso, eu ficaria grato de saber que existe algum cara te dando todo o amor que eu não consegui te dar.",
+  "Antes eu tinha planos contigo.",
+  "Eu prometi me casar contigo.",
+  "E essa promessa ainda vive em mim como algo que não morreu… só ficou perdida no tempo.",
+  "Perder você me ensinou da forma mais dura que o amor não acaba quando ainda existe sentimento.",
+  "Ele acaba quando a gente machuca demais quem ama.",
+  "E eu machuquei.",
+  "Não passa um dia sem que eu pense em tudo que eu faria diferente.",
+  "Nas conversas que eu deveria ter tido.",
+  "Nos silêncios que eu deveria ter respeitado.",
+  "Nas atitudes que eu deveria ter mudado antes que fosse tarde demais.",
+  "Hoje eu carrego a saudade de algo que ainda vive em mim… mas que talvez não viva mais entre nós.",
+  "Eu acho que vou ser eternamente assombrado pelo fato de não conseguir te deixar.",
+  "Porque mesmo agora… mesmo sabendo que talvez seja o certo… a única coisa que eu queria era ficar.",
+  "Mas amar também é entender quando a gente precisa soltar alguém… mesmo quando isso destrói a gente por dentro.",
+  "Então talvez esse seja o meu último ato de amor por você.",
+  "Te deixar partir.",
+  "Te deixar viver a sua vida sem mim… sem as minhas falhas, sem as minhas ausências, sem os meus erros te puxando para trás.",
+  "E eu sei que quando eu mandar essa mensagem… alguma coisa dentro de mim vai quebrar de um jeito que nunca mais vai voltar a ser igual.",
+  "Porque você não foi só alguém que passou na minha vida.",
+  "Você foi alguém que virou parte dela.",
+  "Eu estou chorando escrevendo isso. De verdade.",
+  "Porque a ideia de um dia olhar para trás e perceber que você virou só uma lembrança… me destrói.",
+  "Talvez você siga em frente.",
+  "Talvez você ame outra pessoa.",
+  "Talvez alguém consiga te fazer feliz do jeito que eu não consegui.",
+  "E eu espero que consiga mesmo.",
+  "Mas eu também sei que, no fundo, uma parte de mim sempre vai carregar você.",
+  "Porque algumas pessoas entram na nossa vida e vão embora…",
+  "Mas deixam um vazio que nunca mais é preenchido do mesmo jeito.",
+  "E eu acho que você vai ser esse vazio em mim.",
+  "Então esse é o meu adeus.",
+  "Mesmo que meu coração esteja gritando para não deixar você ir.",
+  "Mesmo que uma parte de mim saiba que, depois de hoje… eu nunca mais vou ser exatamente a mesma pessoa.",
+  "De todas as peças que já abracei, que conheci, que eu quis, dos lugares onde pisei…",
+  "Eu nunca senti nada que fosse necessário quanto você.",
+  "E por mim, amo você demais.",
+  "Amo seu olhar, pqp como eu amo seus olhinhos.",
+  "VsF como eu queria ter uma filha com seus olhos.",
+  "Eu nunca mais irei te procurar.",
+  "Mas caso um dia você precise de mim, estarei aqui.",
+  "Porque prometi pra você que sempre estaria do seu lado, não importa o que passasse.",
+  "Faço isso com dor no coração.",
+  "Eu poderia passar mil vidas procurando alguém igual a você.",
+  "E mesmo assim saberia que nunca encontraria.",
+  "Você é única.",
+  "Eu te amo pra caralho, de verdade.",
+  "Espero que você saiba disso.",
+  "Eu estou partindo não porque eu quero, mas porque é melhor pra você.",
+  "E sobre seu aniversário, eu prometi que ia fazer um texto bom.",
+  "Não foi o texto que você esperava, peço perdão.",
+  "Espero que curta isso, estou escrevendo essa parte chorando novamente.",
+  "Você é a única mulher que amei na vida.",
+  "Você me dava vontade de viver.",
+  "Peço desculpa, estarei sempre aqui se precisar de mim.",
+  "Obrigado mesmo.",
+  "Eu quero que você saiba que nada nesse mundo mexe tanto com minha alma como você.",
+  "Perdão de verdade, jujudopix.",
+  "Espero que você seja feliz de verdade.",
+  "Feliz aniversário, meu amor.",
+  "Daqui um tempo talvez você encontre alguém que te ame do jeito que você merece.",
+  "Alguém que segure sua mão nos dias difíceis.",
+  "Que escute suas histórias.",
+  "Que te faça rir nas coisas simples da vida.",
+  "Alguém que esteja presente do jeito que eu muitas vezes não consegui estar.",
+  "Talvez você construa uma família.",
+  "Talvez você tenha filhos… filhos lindos igual a você.",
+  "Com o seu sorriso, com os seus olhos que eu sempre amei tanto.",
+  "E eu imagino que algum dia você vai olhar pra eles e sentir aquele tipo de amor que muda tudo.",
+  "E nesse futuro… talvez eu seja só um flashback na sua memória.",
+  "Uma lembrança distante de um garoto que te amou muito, mas que não soube fazer tudo certo no tempo certo.",
+  "Talvez um dia você lembre de mim quando ouvir alguma música.",
+  "Quando ver um pôr do sol bonito.",
+  "Ou quando passar por algum lugar que te lembre de nós.",
+  "E talvez você sorria de leve… não de tristeza, mas de lembrança.",
+  "Porque apesar de tudo que aconteceu… apesar de todos os erros… o que a gente sentiu foi real.",
+  "E eu sei que um dia a vida vai seguir para nós dois de formas diferentes.",
+  "Você vivendo sua história, construindo seus sonhos…",
+  "E eu seguindo o meu caminho carregando comigo tudo que você foi pra mim.",
+  "Mas existe uma coisa que eu sempre vou acreditar.",
+  "Que a gente foi duas almas destinadas a se encontrar… mas não destinadas a ficar juntas.",
+  "Talvez o nosso destino nunca tenha sido viver uma vida inteira lado a lado.",
+  "Talvez o nosso destino tenha sido apenas cruzar caminhos, sentir tudo que sentimos… e depois seguir em direções diferentes.",
+  "Mesmo assim… você foi o amor mais verdadeiro que eu já senti na vida.",
+  "E mesmo que o mundo continue girando… mesmo que os anos passem…",
+  "Uma parte de mim sempre vai olhar pra trás e lembrar de você como a pessoa que marcou a minha vida de um jeito que ninguém mais conseguiu.",
+  "Fomos apenas duas almas destinadas a se encontrar, mas nunca a ficar juntas.",
+  "E isso vai me assombrar pra sempre."
+];
+ 
 
-de todas as peças que ja abracei que conheci que eu quis dos lugares onde pisei eu nunca senti nada que fosse necessario quanto você e por mim amo vc dms amo seu olhar,pqp como eu amo seus olhinhos vsf como eu quero teria ter uma filha com seus olhos eu nunca mais irei te procurar mas caso um ia vc precise de mim estarei aqui pq prometi pra vc que sempre estaria do seu lado nao importa o que passase faço isso com dor no coração eu poderia passar mil vidas procuradndo alguem igual vc e mesmo assim saberia que nunca ecnontraria vc e unica eu  te amo pra krl de verdade espero que tu saiba que eu eu estou partindo nao pq eu quero  sim pq e melhor pra ti e sobre seu aniversario eu prometi que ia fazer um texto bom, não foi o texto que você esperava peço perdão espero que curtaisso, estou escrevendo essa parte chorando novamente vsf vc e a unica mulher que amei na vida vc me dava vontade de viver peço desculpa estarei sempre aqui se precisar de mim obrigado msm eu quero que tu saiba que nada nessa mundo mexe tanto com minha alma como você perdão de verdade mesmo jujudopix  espero que vc seja feliz de verdade feliz aniversrio meu amor 
-
-daqui um tempo talvez você encontre alguém que te ame do jeito que você merece. alguém que segure sua mão nos dias difíceis, que escute suas histórias, que te faça rir nas coisas simples da vida. alguém que esteja presente do jeito que eu muitas vezes não consegui estar.
-
-talvez você construa uma família. talvez você tenha filhos… filhos lindos igual a você. com o seu sorriso, com os seus olhos que eu sempre amei tanto. e eu imagino que algum dia você vai olhar pra eles e sentir aquele tipo de amor que muda tudo.
-
-e nesse futuro… talvez eu seja só um flashback na sua memória.
-uma lembrança distante de um garoto que te amou muito, mas que não soube fazer tudo certo no tempo certo.
-
-talvez um dia você lembre de mim quando ouvir alguma música, quando ver um pôr do sol bonito, ou quando passar por algum lugar que te lembre de nós. e talvez você sorria de leve… não de tristeza, mas de lembrança.
-
-porque apesar de tudo que aconteceu… apesar de todos os erros… o que a gente sentiu foi real.
-
-e eu sei que um dia a vida vai seguir para nós dois de formas diferentes. você vivendo sua história, construindo seus sonhos… e eu seguindo o meu caminho carregando comigo tudo que você foi pra mim.
-
-mas existe uma coisa que eu sempre vou acreditar.
-
-que a gente foi duas almas destinadas a se encontrar…
-mas não destinadas a ficar juntas.
-
-talvez o nosso destino nunca tenha sido viver uma vida inteira lado a lado. talvez o nosso destino tenha sido apenas cruzar caminhos, sentir tudo que sentimos… e depois seguir em direções diferentes.
-
-mesmo assim… você foi o amor mais verdadeiro que eu já senti na vida.
-
-e mesmo que o mundo continue girando… mesmo que os anos passem…
-uma parte de mim sempre vai olhar pra trás e lembrar de você como a pessoa que marcou a minha vida de um jeito que ninguém mais conseguiu.
-fomos apenas duas almas destian a se encontrar mas nunca ficar junto isso ira me assombrar pra sempre`;
 // --- TYPEWRITER COM ROLO E LETRA POR LETRA ---
 function typeWriterLetras(versos, callback){
   textoEl.innerHTML = '';
@@ -250,4 +400,5 @@ nextBtn.addEventListener('click', ()=>{
 </script>
 </body>
 </html>
+
 
