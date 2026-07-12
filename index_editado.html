@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Você ❤️</title>
+<style>
+/* BODY */
+body {
+  margin:0;
+  padding:0;
+  font-family: 'Georgia', 'Times New Roman', serif; /* fonte elegante estilo poesia */
+  background: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* BOTÃO DE INÍCIO */
+#startScreen, #nextBtn {
+  padding: 15px 30px;
+  background: #fff;
+  color: #000;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-size: 20px;
+  margin-top:30px;
+  font-weight:bold;
+}
+
+/* CONTEÚDO */
+#conteudo {
+  display:none;
+  width:90%;
+  max-width:700px;
+  height:80vh;
+  margin-top:20px;
+  line-height:1.9;
+  text-align:left;
+  overflow-y:auto;
+  scroll-behavior: smooth;
+  font-size:1.25em;
+  padding-right: 10px;
+}
+
+/* ESTILO POEMA */
+.verso {
+  display:block;
+  margin-bottom: 1.2em;
+}
+
+/* RESPONSIVO */
+@media (max-width:600px){
+  #conteudo { font-size:1.1em; line-height:1.8; }
+  #startScreen, #nextBtn { font-size:18px; padding:12px 25px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TELA DE INÍCIO -->
+<div id="startScreen">Toque para iniciar ❤️</div>
+
+<!-- CONTEÚDO -->
+<div id="conteudo">
+  <div id="texto"></div>
+  
+</div>
+
+<!-- MÚSICAS -->
+<audio id="audio1" src="intro.mp3"></audio>
+<audio id="audio2" src="musica.mp3"></audio>
+
+<script>
+const startScreen = document.getElementById('startScreen');
+const conteudo = document.getElementById('conteudo');
+const textoEl = document.getElementById('texto');
+
+const audio1 = document.getElementById('audio1');
+const audio2 = document.getElementById('audio2');
+
+// --- TEXTOS ---
+const versos = [
+  "amor, por favor fala nunca mais que você atrasou a minha vida",
+"você foi uma das melhores coisas que já aconteceram comigo",
+"eu sei que as coisas estão muito difíceis na sua vida ultimamente",
+"que está te machucando que você tá cansada e que tem dias em que parece que nada faz sentido",
+"eu queria tanto poder estar aí agora te abraçar bem forte",
+"secar cada lágrima sua e fazer você sentir um pouquinho da paz que você merece",
+"eu queria poder tirar esse peso do seu peito nem que fosse por alguns minutos",
+"só pra você lembrar como é respirar sem sentir que o mundo inteiro tá caindo sobre você",
+"quando você fala que outra pessoa vai cuidar melhor de mim ou que não é a pessoa certa pra mim meu coração aperta",
+"você não faz ideia do quanto eu te amo",
+"se eu pudesse escolher de novo eu escolheria você",
+"se tivesse que escolher mil vezes eu escolheria você nas mil",
+"porque é você quem eu amo é você quem eu quero ao meu lado",
+"e é com você que eu imagino o meu futuro",
+"e nada do que aconteceu até hoje conseguiu mudar isso",
+"nem a distância nem os dias difíceis nem o medo nem a tristeza",
+"porque o que eu sinto por você é maior do que tudo isso",
+"eu não tô com você só pelos dias felizes",
+"eu quero estar do seu lado justamente quando tudo parece desabar",
+"quero ser o seu porto seguro quero que você sinta que pode descansar em mim quando estiver cansada",
+"você não precisa enfrentar tudo isso sozinha porque enquanto eu estiver aqui eu vou segurar a sua mão",
+"mesmo que seja de longe eu vou continuar aqui e nunca vou soltar",
+"e sobre a distância ela machuca eu sei eu sinto uma saudade absurda de você todos os dias",
+"mas ela não é maior do que o que eu sinto",
+"nas suas férias se você quiser eu compro a sua passagem pra você vir ficar comigo",
+"eu quero poder te abraçar de verdade olhar nos seus olhos cuidar de você",
+"fazer carinho em você e aproveitar cada segundo ao seu lado",
+"não por obrigação mas porque esse é o meu maior desejo",
+"eu não vejo a hora de finalmente olhar pra você e perceber que tudo isso valeu a pena",
+"eu fico imaginando como vai ser o nosso primeiro abraço",
+"e só de pensar nisso meu coração fica em paz porque é com você que eu quero viver esses momentos",
+"e se por algum motivo a gente ainda tiver que esperar mais eu espero",
+"espero o tempo que for preciso um mês um ano ou o tempo que a vida pedir",
+"porque pra mim vale a pena esperar por você você vale a pena",
+"algumas pessoas passam pela nossa vida e deixam lembranças",
+"mas você se tornou parte de quem eu sou",
+"e eu nunca teria pressa para desistir de alguém que significa tanto pra mim",
+"então por favor não desiste da gente por achar que você não é suficiente pra mim",
+"você sempre foi e sempre vai ser",
+"eu te amo com todo o meu coração",
+"e enquanto existir uma chance de ter você na minha vida eu vou continuar escolhendo você todos os dias",
+"todas as vezes sem pensar duas vezes porque amar você nunca foi um peso sempre foi um privilégio",
+"vida às vezes eu fico pensando em como a nossa mente pode ser cruel com a gente",
+"ela pega as nossas maiores feridas e transforma em espelhos",
+"fazendo a gente enxergar defeitos onde na verdade só existem marcas de quem lutou demais",
+"e eu tenho medo de que você esteja acreditando nesses espelhos quebrados",
+"como se eles mostrassem a verdade mas não mostram",
+"uma pessoa machucada nunca consegue se enxergar por inteiro",
+"ela só enxerga a própria dor",
+"e eu queria tanto que por um instante você conseguisse se enxergar pelos meus olhos",
+"porque você descobriria uma pessoa linda forte e muito maior do que qualquer sofrimento",
+"tem uma frase que diz que quem olha para fora sonha quem olha para dentro desperta",
+"eu queria que quando você olhasse para dentro de si encontrasse a mulher incrível que eu conheço",
+"e não apenas o sofrimento que você está vivendo agora",
+"porque a dor é um momento da sua história não a sua identidade",
+"você não é tristeza você não é abandono você não é os problemas da sua vida",
+"você é infinitamente maior do que tudo isso",
+"e eu espero que um dia você consiga acreditar em si da mesma forma que eu acredito",
+"porque você merece enxergar a própria luz",
+"às vezes a vida parece um mar agitado",
+"a gente olha em volta e só vê ondas enormes vento forte e a sensação de que o barco vai afundar",
+"mas ninguém percebe que lá no fundo do oceano existe silêncio",
+"a tempestade acontece na superfície",
+"eu acredito que o seu coração também é assim",
+"hoje ele está enfrentando uma tempestade mas lá no fundo ainda existe a menina doce forte carinhosa e cheia de amor",
+"que me fez me apaixonar por você",
+"e eu vou esperar o tempo que for preciso até que você consiga reencontrá la",
+"porque eu sei que ela nunca deixou de existir ela só está cansada",
+"eu queria que você entendesse que ninguém é amado apenas pelos dias em que sorri",
+"as pessoas que realmente amam ficam também nos dias em que o sorriso desaparece",
+"amar alguém não é admirar somente a luz é permanecer quando tudo parece escuro",
+"é sentar ao lado da pessoa em silêncio e dizer sem palavras você não precisa atravessar essa noite sozinha",
+"é isso que eu quero ser para você hoje amanhã e em todos os dias da minha vida",
+"eu não tenho medo das suas cicatrizes",
+"eu tenho medo é de você achar que precisa escondê las de mim",
+"porque pra mim amar também é conhecer as partes que você tenta esconder do mundo",
+"e ainda assim continuar olhando para você com o mesmo carinho",
+"talvez até com mais porque são justamente essas partes que fazem de você quem você é",
+"sabe por que eu não consigo imaginar outra pessoa no seu lugar",
+"porque foi em você que eu encontrei paz",
+"foi em você que eu encontrei um motivo para acreditar que o amor ainda podia ser leve",
+"e isso não desaparece só porque agora você está vivendo dias difíceis",
+"eu continuo vendo a mesma mulher por quem me apaixonei",
+"a tristeza só está fazendo você esquecer disso mas eu nunca vou esquecer",
+"eu penso muito no dia em que vou finalmente te encontrar",
+"eu imagino o momento em que vou correr para te abraçar",
+"e por alguns segundos todo esse tempo de distância vai deixar de existir",
+"eu quero olhar nos seus olhos e perceber que você está ali de verdade",
+"quero ouvir a sua voz sem precisar de uma ligação",
+"sentir o calor do seu abraço e agradecer a deus por ter esperado",
+"porque eu esperaria mil vezes se no final fosse para chegar até você",
+"e depois desse abraço eu só vou agradecer por nunca ter desistido de nós",
+"e eu penso mais longe ainda penso em um lar onde o barulho não seja de discussões mas de risadas",
+"penso em uma mesa onde a gente jante junto depois de um dia cansativo",
+"penso em domingos tranquilos em viagens em planos",
+"em envelhecer segurando a mesma mão que um dia esperei do outro lado da tela",
+"penso em construir uma família onde o amor seja o lugar mais seguro da casa",
+"quando eu imagino felicidade ela sempre tem o seu rosto",
+"e eu espero um dia poder olhar para os nossos filhos e lembrar que tudo começou porque nós escolhemos não desistir um do outro",
+"você já reparou que as árvores mais fortes são aquelas que enfrentaram os ventos mais violentos",
+"as raízes delas precisaram descer mais fundo para continuar de pé",
+"talvez a vida esteja fazendo isso com você agora",
+"não para te destruir mas para criar raízes que um dia vão sustentar a mulher incrível que você ainda vai se tornar",
+"eu sei que hoje é difícil acreditar nisso mas eu acredito por nós dois",
+"então por favor quando esses pensamentos ruins disserem que você não é suficiente",
+"responde para eles que eles não conhecem a sua história inteira",
+"eles só conhecem a dor do momento",
+"eu conheço a pessoa por trás da dor e é essa pessoa que eu amo",
+"então para de acreditar nessas mentiras que a tristeza coloca na sua cabeça",
+"porque você não é aquilo que a dor diz que você é",
+"você é muito mais do que isso",
+"e eu vou passar quantas vezes forem necessárias lembrando você disso",
+"até que um dia você mesma consiga acreditar",
+"eu quero que você continue vivendo continue sonhando continue acreditando que dias melhores existem",
+"porque eles existem",
+"um dia essa saudade vai virar abraço",
+"um dia essa distância vai virar lembrança",
+"um dia essa tristeza vai ser apenas um capítulo antigo da história que nós vamos contar juntos",
+"e eu quero estar ao seu lado em cada capítulo que ainda falta escrever",
+"e quando esse dia chegar eu quero olhar para você e dizer que valeu a pena esperar",
+"valeu a pena acreditar valeu a pena não desistir",
+"porque no fim o amor nunca foi sobre encontrar alguém perfeito",
+"sempre foi sobre encontrar alguém que faz o nosso coração decidir ficar",
+"mesmo quando a vida tenta convencer a gente a ir embora",
+"e o meu coração decidiu ficar em você",
+"eu te amo de uma forma que o tempo não desgasta",
+"que a distância não enfraquece",
+"e que as dificuldades não conseguem arrancar de mim",
+"se eu pudesse fazer um único pedido para o futuro",
+"seria que ele me permitisse viver uma vida inteira ao seu lado",
+"porque entre todas as certezas que eu ainda procuro na vida",
+"existe uma que eu já encontrei",
+"é você e sempre vai ser você",
+"eu amo você mais do que qualquer palavra consegue explicar",
+"mais do que qualquer texto consegue demonstrar",
+"e enquanto eu respirar eu vou continuar escolhendo você",
+"acreditando em você sonhando com você esperando por você",
+"e imaginando o dia em que finalmente vou poder segurar o seu rosto",
+"olhar nos seus olhos e dizer baixinho que você conseguiu",
+"que nós conseguimos",
+"e que tudo aquilo que um dia doeu ficou para trás",
+"porque agora a gente finalmente tá junto",
+"eu amo cada detalhe seu",
+"eu amo a sua voz porque ela consegue me acalmar",
+"mesmo nos dias em que minha cabeça parece uma bagunça",
+"eu amo o seu sotaque porque toda vez que você fala eu fico prestando atenção",
+"mesmo quando você tá falando das coisas mais aleatórias do mundo",
+"eu amo o jeito que você muda de assunto do nada",
+"e acaba me fazendo rir sem nem perceber",
+"eu amo quando você fala de um assunto",
+"e cinco minutos depois já tá falando de outro completamente diferente",
+"eu amo o seu jeitinho porque ele é só seu",
+"e eu nunca conheci ninguém que fosse igual a você",
+"eu amo a forma como você me trata",
+"porque ninguém nunca me fez sentir tão amado tão acolhido e tão importante quanto você",
+"eu passei boa parte da minha vida guardando tudo pra mim",
+"tentando resolver tudo sozinho sem contar meus problemas pra ninguém",
+"porque eu sempre achei que ninguém iria entender",
+"mas com você foi diferente",
+"você fez eu sentir que finalmente existia um lugar onde eu podia abaixar a guarda",
+"sem medo de ser julgado",
+"e isso vale mais do que qualquer coisa nesse mundo",
+"você lembra como eu era difícil de lidar",
+"eu sei que ainda sou às vezes",
+"eu sei que ainda erro ainda tenho muito pra melhorar",
+"mas eu prometo que todos os dias eu tento ser uma pessoa melhor",
+"porque eu tenho medo de perder a pessoa mais importante da minha vida",
+"eu quero ser um homem que mereça o amor que você me dá",
+"eu quero continuar aprendendo amadurecendo corrigindo meus erros e crescendo ao seu lado",
+"porque você faz nascer em mim uma vontade de evoluir que eu nunca senti antes",
+"às vezes eu fico pensando que o amor não é encontrar alguém que complete os nossos vazios",
+"mas alguém que nos faça descobrir partes de nós que nem sabíamos que existiam",
+"e foi exatamente isso que você fez comigo",
+"você despertou em mim um lado que eu nunca tinha mostrado pra ninguém",
+"você me ensinou que ser forte também é demonstrar carinho",
+"que amar não é sinal de fraqueza",
+"e que confiar o coração a alguém pode ser a decisão mais bonita que uma pessoa toma na vida",
+"eu amo até o silêncio que existe entre a gente",
+"porque ele nunca é um silêncio vazio",
+"é um silêncio que transmite paz que me faz sentir em casa",
+"eu poderia passar horas simplesmente ouvindo a sua respiração ou a sua voz contando qualquer história por mais simples que fosse",
+"porque quando é você falando tudo ganha um significado diferente",
+"se um dia alguém me perguntasse qual foi o maior presente que a vida me deu",
+"eu responderia sem pensar duas vezes que foi ter conhecido você",
+"porque existem pessoas que passam pela nossa vida",
+"e existem pessoas que mudam a nossa vida",
+"você mudou a minha e talvez nem tenha percebido o tamanho disso",
+"eu não consigo mais imaginar um futuro bonito onde você não esteja presente",
+"porque todos os sonhos que eu tenho agora têm você neles",
+"e se algum dia você esquecer do valor que tem",
+"eu vou lembrar por nós dois quantas vezes forem necessárias",
+"porque eu nunca vou deixar a mulher que eu amo acreditar que ela vale menos do que realmente vale",
+"você é o meu lar mesmo estando longe",
+"você é a paz que eu procurei",
+"você é a paz que eu procurei durante tantos anos sem saber que estava procurando você",
+"e enquanto existir um amanhã eu vou continuar fazendo de tudo para merecer o privilégio de chamar você de minha vida",
+
+
+
+
+];
+
+// --- TYPEWRITER COM ROLO E LETRA POR LETRA ---
+function typeWriterLetras(versos, callback){
+  textoEl.innerHTML = '';
+  let i = 0;
+
+  function typeVerso(){
+    if(i < versos.length){
+      const span = document.createElement('span');
+      span.className = 'verso';
+      textoEl.appendChild(span);
+
+      let j = 0;
+      function typeLetra(){
+        if(j < versos[i].length){
+          span.textContent += versos[i].charAt(j);
+          j++;
+          if(j % 10 === 0){
+            span.scrollIntoView({behavior:'smooth', block:'end'});
+          }
+          setTimeout(typeLetra, 35);
+        } else {
+          i++;
+          span.scrollIntoView({behavior:'smooth', block:'end'});
+          setTimeout(typeVerso, 600);
+        }
+      }
+      typeLetra();
+    } else if(callback){
+      callback();
+    }
+  }
+  typeVerso();
+}
+
+// --- CROSSFADE DE MÚSICA ---
+function crossfade(a1, a2, duration=2000){
+  a2.volume = 0;
+  a2.currentTime = 0;
+  a2.play().catch(err=>console.log('erro audio2:', err));
+
+  const steps = 20;
+  let step = 0;
+  const interval = duration / steps;
+  
+  const fade = setInterval(()=>{
+    step++;
+    a1.volume = Math.max(0, 1*(1 - step/steps));
+    a2.volume = Math.min(1, step/steps);
+    if(step>=steps){
+      clearInterval(fade);
+      a1.pause();
+      a1.currentTime = 0;
+    }
+  }, interval);
+}
+
+// --- INÍCIO ---
+startScreen.addEventListener('click', ()=>{
+  startScreen.style.display='none';
+  conteudo.style.display='block';
+  
+  audio1.currentTime = 0;
+  audio1.volume = 1;
+  audio1.play().catch(err=>console.log('erro audio1:', err));
+
+  typeWriterLetras(versos, ()=>{
+    crossfade(audio1, audio2, 2000);
+  });
+});
+
+</script>
+</body>
+</html>
